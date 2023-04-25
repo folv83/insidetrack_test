@@ -1,0 +1,49 @@
+# Settings for server
+server:  
+  servlet:
+    context-path: /test
+  port: 8085 #comment to deploy
+
+# Settings for Spring
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@amazon-db.cypouxmyfnss.us-east-1.rds.amazonaws.com:1521:ORCL
+    username: ITD
+    password: ITD
+    driver-class-name: oracle.jdbc.OracleDriver
+    hikari:
+      max-lifetime: 180000 #3 minutes wait time
+    
+  sql:
+    init:
+      encoding: UTF-8
+    
+  jpa:
+    properties:
+      hibernate:
+        default_schema: ITD
+        jdbc:
+          batch_size: 40
+        order_inserts: true
+        generate_statistics: false
+    database-platform: org.hibernate.dialect.Oracle10gDialect
+    show-sql: true
+    open-in-view: false
+
+# Settings for OpenApi
+springdoc:
+  packages-to-scan: com.insidetrackdata.test
+  api-docs:
+    path: /api-docs
+  swagger-ui:    path: /api-catalog.html
+    tags-sorter: alpha
+    operations-sorter: method
+
+# Settings for logging
+#logging: #uncomment to deploy
+  #config: classpath:log4j.xml #uncomment to deploy
+
+# Other settings
+exportFile:
+  sheet:
+    size: 1000
